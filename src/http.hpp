@@ -28,8 +28,7 @@ namespace market::http {
                                 [&](const mongocxx::stdx::optional<mongocxx::result::insert_one>& v){
                                     if (v) response = "Success";
                                     else response = "Error while inserting user";
-                                },
-                                [](){ printf("OnCompleted\n"); });
+                                });
                         return crow::response(response);
                     } else if (str == "add_product") {
                         std::string name;
@@ -46,8 +45,7 @@ namespace market::http {
                                 [&](const mongocxx::stdx::optional<mongocxx::result::insert_one>& v){
                                     if (v) response = "Success";
                                     else response = "Error while inserting product";
-                                },
-                                [](){ printf("OnCompleted\n"); });
+                                });
                         return crow::response(response);
                     } else if (str == "catalog") {
                         std::string name;
