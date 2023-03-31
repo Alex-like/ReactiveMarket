@@ -3,7 +3,7 @@ project(ReactiveMarket)
 
 set(CMAKE_CXX_STANDARD 17)
 # ---------------------- Reactive C++ --------------------- #
-find_package(rxcpp REQUIRED)
+find_package( rxcpp REQUIRED )
 # ------------------------- boost ------------------------- #
 find_package( Boost 1.79 COMPONENTS program_options REQUIRED )
 # ------------------------ MongoDB ------------------------ #
@@ -18,8 +18,7 @@ include_directories( "/usr/local/include/libbson-1.0" )
 include_directories( "/usr/local/lib" )
 # ------------------------- Main -------------------------- #
 file( GLOB MainSource ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp )
-add_executable( ${PROJECT_NAME}_main
-        ${MainSource} )
+add_executable( ${PROJECT_NAME}_main ${MainSource} )
 target_link_libraries( ${PROJECT_NAME}_main PRIVATE
         ${LIBMONGOCXX_LIBRARIES}
         ${LIBBSONCXX_LIBRARIES}
@@ -37,10 +36,10 @@ set( gtest_force_shared_crt ON CACHE BOOL "" FORCE )
 FetchContent_MakeAvailable( googletest )
 
 file( GLOB TestSources ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
-add_executable( ${PROJECT_NAME}_test
-        ${TestSources} )
+add_executable( ${PROJECT_NAME}_test ${TestSources} )
 target_link_libraries( ${PROJECT_NAME}_test PRIVATE
         ${LIBMONGOCXX_LIBRARIES}
         ${LIBBSONCXX_LIBRARIES}
         Boost::program_options
+        rxcpp
         gtest )
