@@ -15,7 +15,7 @@
 namespace market::model {
     enum class currency_t { RUB, USD, EUR };
 
-    std::string to_string(currency_t currency) {
+     static std::string to_string(currency_t currency) {
         switch (currency) {
             case currency_t::RUB    : return "rub";
             case currency_t::USD    : return "usd";
@@ -24,7 +24,7 @@ namespace market::model {
         }
     }
 
-    currency_t parse(const std::string& str) {
+    static currency_t parse(const std::string& str) {
         if (str == "eur") return currency_t::EUR;
         if (str == "usd") return currency_t::USD;
         if (str == "rub") return currency_t::RUB;
